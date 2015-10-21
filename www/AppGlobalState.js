@@ -5,6 +5,9 @@ module.exports = {
 		exec(success, error, "AppGlobalState", "getAppState", [key]);
 	},
 	setAppState:function(key, value){
-		exec(null, null, "AppGlobalState", "setAppState",[key, value]);
-	}
+		exec(null, null, "AppGlobalState", "setAppState", [key, value]);
+	},
+    loadUrl:function(url){
+        exec(null, null, "AppGlobalState", "loadUrl", [url]);
+    }
 };

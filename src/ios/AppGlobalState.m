@@ -40,4 +40,18 @@
     [self->_stateDictionary setValue:value forKey:key];
 }
 
+- (void)loadUrl:(CDVInvokedUrlCommand *)command{
+    NSString *url = [command argumentAtIndex:0];
+    if (url == nil) {
+        NSLog(@"空URL参数");
+        return;
+    }
+    NSURL* fileURL = [NSURL URLWithString:url];
+    NSString* filePath = [self.commandDelegate pathForResource:[fileURL path]];
+    NSURL * loadedFileUrl = [NSURL fileURLWithPath:filePath];
+    
+    NSURLRequest *loadedUrlRequest = [NSURLRequest requestWithURL:loadedFileUrl];
+    [self.webView loadRequest:loadedUrlRequest];
+}
+
 @end

@@ -8,4 +8,6 @@
 
 - (void)setAppState:(CDVInvokedUrlCommand *)command;
 
+- (void)loadUrl:(CDVInvokedUrlCommand *)command;
+
 @end
