@@ -53,5 +53,8 @@
     NSURLRequest *loadedUrlRequest = [NSURLRequest requestWithURL:loadedFileUrl];
     [self.webView loadRequest:loadedUrlRequest];
 }
+- (void)exitApp:(CDVInvokedUrlCommand *)command{
+    exit(EXIT_SUCCESS);
+}
 
 @end

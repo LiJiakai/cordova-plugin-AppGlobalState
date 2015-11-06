@@ -10,4 +10,6 @@
 
 - (void)loadUrl:(CDVInvokedUrlCommand *)command;
 
+- (void)exitApp:(CDVInvokedUrlCommand *)command;
+
 @end

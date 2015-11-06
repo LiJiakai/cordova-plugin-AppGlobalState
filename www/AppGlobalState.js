@@ -9,5 +9,8 @@ module.exports = {
 	},
     loadUrl:function(url){
         exec(null, null, "AppGlobalState", "loadUrl", [url]);
+    },
+    exitApp:function(){
+        exec(null, null, "AppGlobalState", "exitApp", []);
     }
 };
