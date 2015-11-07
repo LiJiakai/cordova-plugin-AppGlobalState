@@ -12,5 +12,8 @@ module.exports = {
     },
     exitApp:function(){
         exec(null, null, "AppGlobalState", "exitApp", []);
+    },
+    startDocumentLoadTimer:function(){
+        exec(null, null, "AppGlobalState", "startDocumentLoadTimer", []);
     }
 };
