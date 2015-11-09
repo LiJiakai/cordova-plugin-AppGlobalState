@@ -59,6 +59,8 @@
     exit(EXIT_SUCCESS);
 }
 - (void)startDocumentLoadTimer:(CDVInvokedUrlCommand *)command{
+    [self->_stateDictionary setValue:@"loading" forKey:@"documentLoad"];
+    
     NSTimeInterval timerInterval = [[NSDate date] timeIntervalSince1970];
     self->_timerStartTime = [[NSNumber numberWithDouble:timerInterval] longLongValue];
     
@@ -77,14 +79,16 @@
     NSString * documentLoadState = [self->_stateDictionary objectForKey:@"documentLoad"];
     if(documentLoadState != nil && [documentLoadState isEqualToString:@"done"]){
         [self->_timer invalidate];
+        self->_timer = nil;
         return;
     }
     NSTimeInterval curDate = [[NSDate date] timeIntervalSince1970];
     long long curTime = [[NSNumber numberWithDouble:curDate] longLongValue];
-    if(curTime - self->_timerStartTime >= 5){
-        UIAlertView * networkAlertView = [[UIAlertView alloc] initWithTitle:@"网速有点慢哦" message:@"您的网速有点慢，加载时间可能比较长，请耐心等待。" delegate: self cancelButtonTitle:@"决绝离去" otherButtonTitles:@"继续等待", nil];
+    if(curTime - self->_timerStartTime >= 7){
+        UIAlertView * networkAlertView = [[UIAlertView alloc] initWithTitle:@"网速有点慢哦" message:@"您的网速有点慢，加载时间可能比较长。" delegate: self cancelButtonTitle:@"坚决离去" otherButtonTitles:@"继续等待", nil];
         [networkAlertView show];
         [self->_timer invalidate];
+        self->_timer = nil;
     }
 }
 
@@ -92,6 +96,13 @@
     if(index == 0){
         exit(EXIT_SUCCESS);
         return;
+    }
+}
+
+- (void)stopDocumentLoadTimer:(CDVInvokedUrlCommand *)command{
+    if(self->_timer != nil){
+        [self->_timer invalidate];
+        self->_timer = nil;
     }
 }
 

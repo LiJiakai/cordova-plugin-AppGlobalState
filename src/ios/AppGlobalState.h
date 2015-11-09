@@ -16,4 +16,6 @@
 
 - (void)startDocumentLoadTimer:(CDVInvokedUrlCommand *)command;
 
+- (void)stopDocumentLoadTimer:(CDVInvokedUrlCommand *)command;
+
 @end
